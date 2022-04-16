@@ -31,10 +31,11 @@ const Grid = ({
   }, [moves]);
 
   useEffect(() => {
+    console.log("checking if you're done or not");
     if (Board.length === correctTiles.current.length) {
       setWin(true);
     }
-  }, [time]);
+  });
 
   function handleClick(e, i) {
     setBoard((prev) => {
