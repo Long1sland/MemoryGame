@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { Content, Wrapper } from "./header.styles";
+import { Backgound, Card } from "./overlay.styles";
 import GridArray from "../../randomize";
 
-const Header = ({
+const Overlay = ({
   setIsVisible,
   setTime,
   setMoves,
@@ -11,6 +10,8 @@ const Header = ({
   setBoard,
   setLoss,
   setWin,
+  moves,
+  time,
 }) => {
   const handleClick = () => {
     console.log("clicked");
@@ -28,17 +29,14 @@ const Header = ({
     });
   };
   return (
-    <Wrapper>
-      <div id="Title">Memory</div>
-      <Content>
-        {/*<button
-          id="restart"
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          Restart
-        </button>*/}
+    <Backgound>
+      <Card>
+        <h1>You Win!!! 🎉</h1>
+        <div id="current-play" className="play-info">
+          <span>Your Time : {time}</span>
+          <span>Your Moves : {moves}</span>
+        </div>
+
         <button
           id="new"
           onClick={() => {
@@ -48,9 +46,9 @@ const Header = ({
         >
           New Game
         </button>
-      </Content>
-    </Wrapper>
+      </Card>
+    </Backgound>
   );
 };
 
-export default Header;
+export default Overlay;

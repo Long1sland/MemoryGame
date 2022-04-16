@@ -6,10 +6,11 @@ import Moves from "./components/Moves/moves";
 import Timer from "./components/Timer/timer";
 import { GlobalStyle } from "./GlobalStyles";
 import { Footer } from "./Footer.styles";
+import Overlay from "./components/overlay/overlay";
 
 const App = () => {
   const timeLimit = 120;
-  const maxMoves = 15;
+  const maxMoves = 30;
   const [moves, setMoves] = useState(0);
   const [time, setTime] = useState(timeLimit);
   const [win, setWin] = useState(false);
@@ -29,14 +30,17 @@ const App = () => {
         Board={Board}
         setBoard={setBoard}
         setLoss={setLoss}
+        setWin={setWin}
       ></Header>
       <Grid
+        setWin={setWin}
         moves={moves}
         setMoves={setMoves}
         isVisible={isVisible}
         setIsVisible={setIsVisible}
         Board={Board}
         setBoard={setBoard}
+        time={time}
       ></Grid>
       <Footer>
         <Timer
@@ -44,6 +48,8 @@ const App = () => {
           setLoss={setLoss}
           time={time}
           setTime={setTime}
+          win={win}
+          loss={loss}
         ></Timer>
         <Moves
           moves={moves}
@@ -52,7 +58,23 @@ const App = () => {
           maxMoves={maxMoves}
         ></Moves>
       </Footer>
-      {loss && <div>you loose!!!!</div>}
+      {(loss || win) && (
+        <Overlay
+          setIsVisible={setIsVisible}
+          setMoves={setMoves}
+          setTime={setTime}
+          timeLimit={timeLimit}
+          maxMoves={maxMoves}
+          Board={Board}
+          setBoard={setBoard}
+          setLoss={setLoss}
+          setWin={setWin}
+          win={win}
+          loss={loss}
+          moves={moves}
+          time={time}
+        ></Overlay>
+      )}
 
       <GlobalStyle></GlobalStyle>
     </>

@@ -37,11 +37,11 @@ export const Content = styled.div`
     width: 149px;
     height: 52px;
     font-size: 20px;
-    background: #dfe7ec;
-    color: #304859;
     transition: all 0.2s ease-in-out;
+    background: #6395b8;
+    color: white;
     &:hover {
-      background: #6395b8;
+      background: #fda214;
       color: white;
     }
   }

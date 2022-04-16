@@ -1,3 +1,4 @@
+import { isCursorAtEnd } from "@testing-library/user-event/dist/utils";
 import React, { Component, useEffect, useRef, useState } from "react";
 import { Content, Tile, Wrapper } from "./grid.styles";
 
@@ -8,11 +9,11 @@ const Grid = ({
   setIsVisible,
   Board,
   setBoard,
+  setWin,
+  time,
 }) => {
-  console.log("this is moves from grid" + moves);
-  console.log("the grid component rerenred");
-
   const selectedTiles = useRef([]);
+  const correctTiles = useRef([]);
 
   useEffect(() => {
     if (selectedTiles.current.length == 2) {
@@ -21,6 +22,19 @@ const Grid = ({
       return;
     }
   }, [Board]);
+
+  useEffect(() => {
+    if (moves === 0) {
+      console.log("current Tile emptied");
+      correctTiles.current = [];
+    }
+  }, [moves]);
+
+  useEffect(() => {
+    if (Board.length === correctTiles.current.length) {
+      setWin(true);
+    }
+  }, [time]);
 
   function handleClick(e, i) {
     setBoard((prev) => {
@@ -34,13 +48,17 @@ const Grid = ({
         ...selectedTiles.current,
         { Tile: e.target, index: i },
       ];
-      console.log(selectedTiles.current);
+
       const selected = selectedTiles.current;
 
       if (
         selected[0].Tile.innerText == selected[1].Tile.innerText &&
         selected[0].index !== selected[1].index
       ) {
+        correctTiles.current = [
+          ...correctTiles.current,
+          ...selectedTiles.current,
+        ];
         setMoves((prev) => prev + 1);
         setBoard((prev) => {
           selectedTiles.current.forEach((tile) => {
@@ -50,7 +68,6 @@ const Grid = ({
           return prev;
         });
 
-        console.log("good");
         return;
       } else {
         setBoard((prev) => {
@@ -70,9 +87,9 @@ const Grid = ({
         ...selectedTiles.current,
         { Tile: e.target, index: i },
       ];
-      console.log(selectedTiles.current);
     }
   }
+  console.log(correctTiles.current);
 
   return (
     <Wrapper>
