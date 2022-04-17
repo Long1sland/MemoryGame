@@ -28,14 +28,11 @@ const Grid = ({
       console.log("current Tile emptied");
       correctTiles.current = [];
     }
-  }, [moves]);
-
-  useEffect(() => {
     console.log("checking if you're done or not");
     if (Board.length === correctTiles.current.length) {
       setWin(true);
     }
-  });
+  }, [moves]);
 
   function handleClick(e, i) {
     setBoard((prev) => {

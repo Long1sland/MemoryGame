@@ -21,7 +21,7 @@ const Timer = ({ setWin, setLoss, time, setTime, win, loss }) => {
       );
       return () => clearInterval(interval);
     }
-  });
+  }, [time]);
 
   return (
     <Wrapper>
