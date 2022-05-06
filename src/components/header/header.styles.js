@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 5vmin 20vmin;
   @media screen and (max-width: 820px) {
     padding: 5vmin 5vmin;
@@ -15,8 +12,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  #restart {
-    margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  #sign-out {
+    float: left;
     border: none;
     border-radius: 26px;
     width: 127px;
@@ -25,6 +25,7 @@ export const Content = styled.div`
     background: #fda214;
     color: white;
     transition: all 0.2s ease-in-out;
+    #cursor: pointer;
 
     &:hover {
       opacity: 0.8;
@@ -34,30 +35,31 @@ export const Content = styled.div`
   #new {
     border-radius: 26px;
     border: none;
-    width: 149px;
+    float: right;
+    width: 127px;
     height: 52px;
     font-size: 20px;
     transition: all 0.2s ease-in-out;
     background: #6395b8;
     color: white;
+    cursor: pointer;
     &:hover {
-      background: #fda214;
+      opacity: 0.8;
       color: white;
     }
   }
 
   @media screen and (max-width: 600px) {
-    #restart {
+    #sign-out {
       margin-right: 10px;
       border-radius: 26px;
-      width: 80px;
+      width: 90px;
       height: 25px;
       font-size: 12px;
     }
     #new {
       border-radius: 26px;
       width: 90px;
-
       height: 25px;
       font-size: 12px;
     }

@@ -10,8 +10,8 @@ const Grid = ({
   Board,
   setBoard,
   setWin,
-  time,
 }) => {
+  console.log("this is me the thing slowing you down");
   const selectedTiles = useRef([]);
   const correctTiles = useRef([]);
 
@@ -25,10 +25,9 @@ const Grid = ({
 
   useEffect(() => {
     if (moves === 0) {
-      console.log("current Tile emptied");
       correctTiles.current = [];
     }
-    console.log("checking if you're done or not");
+
     if (Board.length === correctTiles.current.length) {
       setWin(true);
     }
@@ -78,7 +77,6 @@ const Grid = ({
         });
 
         setMoves((prev) => prev + 1);
-        console.log("bad");
       }
     } else {
       selectedTiles.current = [
@@ -87,7 +85,6 @@ const Grid = ({
       ];
     }
   }
-  console.log(correctTiles.current);
 
   return (
     <Wrapper>
@@ -100,6 +97,9 @@ const Grid = ({
               }}
               key={i}
               onClick={(e) => {
+                if (isVisible) {
+                  return;
+                }
                 if (Board[i].correct == true) {
                   return;
                 }
@@ -118,4 +118,4 @@ const Grid = ({
   );
 };
 
-export default Grid;
+export default React.memo(Grid);

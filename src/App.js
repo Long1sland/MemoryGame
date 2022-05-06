@@ -1,82 +1,34 @@
-import { useEffect, useState } from "react";
-import GridArray from "./randomize";
-import Grid from "./components/Grid/grid";
-import Header from "./components/header/header";
-import Moves from "./components/Moves/moves";
-import Timer from "./components/Timer/timer";
+import Game from "./components/Game";
+import { initializeApp } from "@firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import SignIn from "./components/SignIn/signIn";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { GlobalStyle } from "./GlobalStyles";
-import { Footer } from "./Footer.styles";
-import Overlay from "./components/overlay/overlay";
+
+const app = initializeApp({
+  apiKey: "AIzaSyAREeqkXXrPE9X9pTWeC0JiHM2XGzrnMjw",
+  authDomain: "memory-game-c6731.firebaseapp.com",
+  projectId: "memory-game-c6731",
+  storageBucket: "memory-game-c6731.appspot.com",
+  messagingSenderId: "389407632603",
+  appId: "1:389407632603:web:faa4ef8ca85ba53ef330fe",
+  measurementId: "G-R42WYFBWPV",
+});
+
+const auth = getAuth(app);
+const firestore = getFirestore(app);
 
 const App = () => {
-  const timeLimit = 120;
-  const maxMoves = 30;
-  const [moves, setMoves] = useState(0);
-  const [time, setTime] = useState(timeLimit);
-  const [win, setWin] = useState(false);
-  const [loss, setLoss] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [Board, setBoard] = useState(GridArray);
-  console.log(moves);
-  console.log(isVisible);
+  const [user] = useAuthState(auth);
   return (
     <>
-      <Header
-        setIsVisible={setIsVisible}
-        setMoves={setMoves}
-        setTime={setTime}
-        timeLimit={timeLimit}
-        maxMoves={maxMoves}
-        Board={Board}
-        setBoard={setBoard}
-        setLoss={setLoss}
-        setWin={setWin}
-      ></Header>
-      <Grid
-        setWin={setWin}
-        moves={moves}
-        setMoves={setMoves}
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}
-        Board={Board}
-        setBoard={setBoard}
-        time={time}
-      ></Grid>
-      <Footer>
-        <Timer
-          setWin={setWin}
-          setLoss={setLoss}
-          time={time}
-          setTime={setTime}
-          win={win}
-          loss={loss}
-        ></Timer>
-        <Moves
-          moves={moves}
-          setWin={setWin}
-          setLoss={setLoss}
-          maxMoves={maxMoves}
-        ></Moves>
-      </Footer>
-      {(loss || win) && (
-        <Overlay
-          setIsVisible={setIsVisible}
-          setMoves={setMoves}
-          setTime={setTime}
-          timeLimit={timeLimit}
-          maxMoves={maxMoves}
-          Board={Board}
-          setBoard={setBoard}
-          setLoss={setLoss}
-          setWin={setWin}
-          win={win}
-          loss={loss}
-          moves={moves}
-          time={time}
-        ></Overlay>
+      {user ? (
+        <Game firestore={firestore} auth={auth} />
+      ) : (
+        <SignIn auth={auth} />
       )}
-
-      <GlobalStyle></GlobalStyle>
+      <GlobalStyle />
     </>
   );
 };

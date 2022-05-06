@@ -1,51 +1,55 @@
 import { Backgound, Card } from "./overlay.styles";
-import GridArray from "../../randomize";
+import GameOver from "../GameOver/gameOver";
+import HowToPlay from "../HowToPlay/howToPlay";
 
 const Overlay = ({
   setIsVisible,
   setTime,
   setMoves,
   timeLimit,
-  Board,
   setBoard,
   setLoss,
   setWin,
   moves,
   time,
+  win,
+  loss,
+  setHowToPlay,
+  howToPlay
 }) => {
-  const handleClick = () => {
-    console.log("clicked");
-    setLoss(false);
-    setWin(false);
-    setIsVisible(true);
-    setTime(timeLimit);
-    setMoves(0);
-    setBoard((prev) => {
-      prev.forEach((tile) => {
-        tile.visible = false;
-        tile.correct = false;
-      });
-      return prev;
-    });
-  };
+  console.log(howToPlay, "this is me this is real")
   return (
     <Backgound>
       <Card>
-        <h1>You Win!!! 🎉</h1>
-        <div id="current-play" className="play-info">
-          <span>Your Time : {time}</span>
-          <span>Your Moves : {moves}</span>
-        </div>
+        {howToPlay? <HowToPlay  setIsVisible={setIsVisible}
+          setMoves={setMoves}
+          setTime={setTime}
+          timeLimit={timeLimit}
+          setBoard={setBoard}
+          setLoss={setLoss}
+          setWin={setWin}
+          win={win}
+          loss={loss}
+          moves={moves}
+          time={time}
+          setHowToPlay = {setHowToPlay}/>:<GameOver setIsVisible={setIsVisible}
+          setMoves={setMoves}
+          setTime={setTime}
+          timeLimit={timeLimit}
+          setBoard={setBoard}
+          setLoss={setLoss}
+          setWin={setWin}
+          win={win}
+          loss={loss}
+          moves={moves}
+          time={time}
+          setHowToPlay = {setHowToPlay}
+          
+          />
 
-        <button
-          id="new"
-          onClick={() => {
-            handleClick();
-            setBoard(GridArray);
-          }}
-        >
-          New Game
-        </button>
+          }
+          
+      
       </Card>
     </Backgound>
   );

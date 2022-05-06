@@ -1,15 +1,20 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Content, Wrapper } from "./timer.styles";
 
-const Timer = ({ setWin, setLoss, time, setTime, win, loss }) => {
+const Timer = ({ setLoss, time, setTime, win, loss, howToPlay }) => {
+  console.log(howToPlay,loss,win)
+  
   useEffect(() => {
-    if (time == 0) {
+    if (time === 0) {
       setLoss(true);
       return;
     }
-    if (win || loss) {
+    if (win || loss || howToPlay){
+      console.log("this ran now")
       return;
+
     } else {
+      console.log("the timer has started")
       const interval = setInterval(
         () => {
           setTime((prev) => {
@@ -21,7 +26,7 @@ const Timer = ({ setWin, setLoss, time, setTime, win, loss }) => {
       );
       return () => clearInterval(interval);
     }
-  }, [time]);
+  }, [time, howToPlay, loss, win]);
 
   return (
     <Wrapper>

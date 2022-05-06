@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import { Content, Wrapper } from "./header.styles";
 import GridArray from "../../randomize";
+import { signOut } from "firebase/auth";
 
 const Header = ({
   setIsVisible,
   setTime,
   setMoves,
   timeLimit,
-  Board,
   setBoard,
   setLoss,
   setWin,
+  auth,
 }) => {
+  console.log("i'm the header");
   const handleClick = () => {
-    console.log("clicked");
     setLoss(false);
     setWin(false);
     setIsVisible(true);
@@ -29,7 +30,6 @@ const Header = ({
   };
   return (
     <Wrapper>
-      <div id="Title">Memory</div>
       <Content>
         {/*<button
           id="restart"
@@ -39,6 +39,14 @@ const Header = ({
         >
           Restart
         </button>*/}
+        <button
+          id="sign-out"
+          onClick={() => {
+            signOut(auth);
+          }}
+        >
+          Sign Out
+        </button>
         <button
           id="new"
           onClick={() => {
@@ -53,4 +61,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default React.memo(Header);

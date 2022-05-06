@@ -1,4 +1,5 @@
 export default function gridData() {
+  console.log("the randomize was triggered");
   let array = [
     { value: 1, visible: false, correct: false },
     { value: 1, visible: false, correct: false },

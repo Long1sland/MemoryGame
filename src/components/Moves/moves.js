@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { Content, Wrapper } from "./moves.styles";
 
 const Moves = ({ moves, setLoss, maxMoves }) => {
-  if (moves === maxMoves) {
-    setLoss(true);
-  }
+  useEffect(() => {
+    if (moves === maxMoves) {
+      setLoss(true);
+    }
+  }, [moves]);
+  console.log("this is working");
   return (
     <Wrapper>
       <Content>
@@ -15,4 +18,4 @@ const Moves = ({ moves, setLoss, maxMoves }) => {
   );
 };
 
-export default Moves;
+export default React.memo(Moves);

@@ -11,6 +11,12 @@ export const Content = styled.div`
   grid-template-columns: repeat(4, 12vmin);
   grid-template-rows: repeat(4, 12vmin);
   grid-gap: 5vmin;
+
+  @media screen and (max-width: 420px) {
+    grid-template-columns: repeat(4, 16vmin);
+    grid-template-rows: repeat(4, 16vmin);
+    grid-gap: 4vmin;
+  }
 `;
 export const Tile = styled.div`
   background: ${({ background }) => background}};
@@ -19,12 +25,17 @@ export const Tile = styled.div`
   justify-content: center;
   align-items: center;
   user-select: none;
+  cursor: pointer;
 
   color: ${({ color }) => color};
   font-size: 7vmin;
   transition: all 0.2s ease-in-out;
   animation: ${({ animation }) => animation} 3s ease-in-out;
 
+
+@media screen and (max-width: 420px) {
+    font-size: 9vmin;
+  }
 
   :active {
     background: #6395b8;
@@ -39,4 +50,7 @@ export const Tile = styled.div`
       color: #304859;
     }
   }
+
+
+  
 `;
