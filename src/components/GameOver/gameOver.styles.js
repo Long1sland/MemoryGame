@@ -1,41 +1,79 @@
-import styled from "styled-components"
-import { Button } from "../NewGame/newGame.styles"
+import styled from "styled-components";
 
 
+export const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+height: 100% ;
 
-export const Buttons = styled(Button)`
- border-radius: 26px;
-    border: none;
-    padding: 2vmin 3vmin;
-    font-size: minmax(4vmin, 20px);
-    background: #dfe7ec;
-    color: #304859; 
-    transition: all 0.2s ease-in-out;
-    animation: shake 2s infinite;
-    cursor: pointer;
-    @keyframes shake {
-      0% {
-        transform: translateX(5px);
-      }
-      3% {
-        transform: translateX(-5px);
-      }
-      6% {
-        transform: translateX(2px);
-      }
-      9% {
-        transform: translateX(-2px);
-      }
-      12% {
-        transform: translateX(0px);
-      }
+.play-info{
+    position: relative;
+}
 
-      100% {
-        transform: translateX(0px);
-      }
+.header{
+    position: absolute;
+    top: 0.6vmin;
+    left: 1vmin;
+    font-size: 1.3vmin;
+}
+
+#player-info-container{
+    height: 37vmin;
+    width: 49vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2vmin;
+
+    
+}
+
+#current-play,#personal-best,#world-record{
+    padding: 4vmin;
+    width: inherit;
+    border-radius: 1vmin;
+    color: white;
+}
+#current-play{
+    background: #152938;
+    
+}
+#personal-best{
+    background: #152938;
+    
+    
+}
+#world-record{
+    background: #DFE7EC;
+    color: #304859
+    
+}
+
+#new{
+    background: orange;
+    color: white;
+    font-size: 2vmin;
+    width: 17vmin;
+}
+
+@media screen and (max-width: 550px){
+    #player-info-container{
+height: 44vmin;
+width: 60vmin;
+font-size: 3.5vmin;
+
+
     }
-    &:hover {
-      background: #6395b8;
-      color: white;
+
+    #new{
+        font-size: 3.5vmin;
+        width: 25vmin;
     }
+
+
+}
+
 `

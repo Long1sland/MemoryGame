@@ -1,4 +1,5 @@
 import GridArray from "../../randomize";
+import { Wrapper } from "./gameOver.styles";
 
 
 const GameOver = ({
@@ -13,7 +14,9 @@ const GameOver = ({
     time,
     win,
     loss,
-    setHowToPlay
+    setHowToPlay,
+    document,
+    worldRecord
   }) => {
     const handleClick = () => {
         console.log("clicked");
@@ -31,17 +34,36 @@ const GameOver = ({
           return prev;
         });
       };
+      console.log("this is the doc",document)
+      console.log("this is the world re", worldRecord)
     return (
-        <>
-        <div>
+        
+        <Wrapper>
+          <div>
           <h1>{win ? "You Win!!! 🎉" : null}</h1>
           <h1>{loss ? "You Lose!!! 😢" : null}</h1>
           <p>Here's how you did</p>
+          
         </div>
+        
+        <div id = "player-info-container">
 
+        
         <div id="current-play" className="play-info">
-          <span>Your Time : {timeLimit - time}</span>
-          <span>Your Moves : {moves}</span>
+          <span className="header">Current Time</span>
+          <span> Time : {timeLimit - time}</span>
+          <span> Moves : {moves}</span>
+        </div>
+        <div id="personal-best" className="play-info">
+          <span className="header">Personal Best</span>
+          <span> Time : {document? document.bestGame.time : "null"}</span>
+          <span> Moves : {document? document.bestGame.moves : "null"}</span>
+        </div>
+        <div id="world-record" className="play-info">
+          <span className="header">World Record✨</span>
+          <span> Time : {worldRecord.time? worldRecord.time : "null"}</span>
+          <span> Moves : {worldRecord.moves? worldRecord.time: "null"}</span>
+        </div>
         </div>
 
         <button
@@ -53,7 +75,7 @@ const GameOver = ({
         >
           New Game
         </button>
-        </>
+        </Wrapper>
     );
 }
  

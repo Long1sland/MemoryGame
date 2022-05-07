@@ -22,8 +22,8 @@ export const Backgound = styled.div`
 
 export const Card = styled.div`
   height: 80vmin;
-  padding: 5vmin;
-  width: 70vmin;
+  padding: 2vmin 5vmin;
+  width: 60vmin;
   background: white;
   top: 50%;
   left: 50%;
@@ -32,6 +32,13 @@ export const Card = styled.div`
   border-radius: 2vmin;
   text-align: center;
   overflow-y:scroll;
+
+  @media screen and (max-width: 550px){
+    height: 114vmin;
+    width: 80vmin;
+    padding: 5vmin;
+
+  }
   
  //display: flex;
  //flex-direction: column;
@@ -60,6 +67,8 @@ export const Card = styled.div`
     color: #304859;
     transition: all 0.2s ease-in-out;
     animation: shake 2s infinite;
+    width: 20vmin;
+    align-self: center;
     cursor: pointer;
     @keyframes shake {
       0% {
@@ -87,4 +96,9 @@ export const Card = styled.div`
       color: white;
     }
   }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
 `;

@@ -15,7 +15,9 @@ const Overlay = ({
   win,
   loss,
   setHowToPlay,
-  howToPlay
+  howToPlay,
+  document,
+  worldRecord
 }) => {
   console.log(howToPlay, "this is me this is real")
   return (
@@ -33,6 +35,7 @@ const Overlay = ({
           moves={moves}
           time={time}
           setHowToPlay = {setHowToPlay}/>:<GameOver setIsVisible={setIsVisible}
+          document = {document}
           setMoves={setMoves}
           setTime={setTime}
           timeLimit={timeLimit}
@@ -44,6 +47,7 @@ const Overlay = ({
           moves={moves}
           time={time}
           setHowToPlay = {setHowToPlay}
+          worldRecord = {worldRecord}
           
           />
 

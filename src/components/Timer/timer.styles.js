@@ -14,5 +14,5 @@ export const Content = styled.div`
   text-align: center;
   display: flex;
   justify-content: space-between;
-  font-size: clamp(13px, 4vmin, 17px);
+  font-size: clamp(13px, 3vmin, 17px);
 `;
