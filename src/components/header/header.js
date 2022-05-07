@@ -13,7 +13,7 @@ const Header = ({
   setWin,
   auth,
 }) => {
-  console.log("i'm the header");
+
   const handleClick = () => {
     setLoss(false);
     setWin(false);

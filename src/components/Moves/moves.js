@@ -7,7 +7,7 @@ const Moves = ({ moves, setLoss, maxMoves }) => {
       setLoss(true);
     }
   }, [moves]);
-  console.log("this is working");
+
   return (
     <Wrapper>
       <Content>

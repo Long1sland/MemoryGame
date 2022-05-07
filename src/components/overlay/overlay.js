@@ -19,7 +19,7 @@ const Overlay = ({
   document,
   worldRecord
 }) => {
-  console.log(howToPlay, "this is me this is real")
+ 
   return (
     <Backgound>
       <Card>

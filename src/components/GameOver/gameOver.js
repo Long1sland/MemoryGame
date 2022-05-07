@@ -18,6 +18,7 @@ const GameOver = ({
     document,
     worldRecord
   }) => {
+
     const handleClick = () => {
         console.log("clicked");
         setLoss(false);
@@ -61,6 +62,7 @@ const GameOver = ({
         </div>
         <div id="world-record" className="play-info">
           <span className="header">World Record✨</span>
+          <span style={{position:'absolute', right: "1vmin",top:"0.6vmin", color:"white"}}>{worldRecord.displayName? worldRecord.displayName: "null"}</span>
           <span> Time : {worldRecord.time? worldRecord.time : "null"}</span>
           <span> Moves : {worldRecord.moves? worldRecord.time: "null"}</span>
         </div>

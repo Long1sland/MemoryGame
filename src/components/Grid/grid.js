@@ -11,7 +11,7 @@ const Grid = ({
   setBoard,
   setWin,
 }) => {
-  console.log("this is me the thing slowing you down");
+   
   const selectedTiles = useRef([]);
   const correctTiles = useRef([]);
 

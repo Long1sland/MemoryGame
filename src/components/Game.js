@@ -30,12 +30,12 @@ const Game = ({ firestore, auth }) => {
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
 
-  const gameRef = collection(firestore, "games");
+  const gameRef = collection(firestore, "test");
   const docRef = doc(gameRef, `${auth.currentUser.uid}`);
   const [document] = useDocumentData(docRef);
  
  const [bestGames] = useCollectionData(query(gameRef, orderBy("bestGame")))
-  console.log(bestGames, "this is all bgs")
+
   useEffect(() => {
     if (win || loss) {
       updateUserData();
@@ -51,18 +51,21 @@ const Game = ({ firestore, auth }) => {
  
  function getWorldRecord(){
    console.log(bestGames)
-   setWorldRecord((prev) =>{
+   if(bestGames.length == 0) {return}
+   else{
+     setWorldRecord((prev) =>{
 prev = bestGames.reduce((worldRecord, {bestGame}) =>{
     if(worldRecord.time == null) worldRecord = bestGame
     worldRecord = bestGame.time <= worldRecord.time? bestGame: worldRecord
-
+console.log(worldRecord)
     return worldRecord
   },{})
-
   return prev
 
 
    })
+   }
+   
   
  }
  
@@ -71,23 +74,25 @@ prev = bestGames.reduce((worldRecord, {bestGame}) =>{
       
 
   const updateUserData = async () => { 
+   
     
-    let bestGame = document.sessions.reduce((best, game) =>{
+    
+      
+    if (document) {
+      let bestGame = document.sessions.reduce((best, game) =>{
         if(best.time == null) best = game
         best = game.time <= best.time? game : best
         
         return best
       }, {})
-      
-    if (document) {
-      
+      let displayName = auth.currentUser.displayName
      
       await setDoc(doc(gameRef, `${auth.currentUser.uid}`), {
         gamesPlayed: document.gamesPlayed + 1,
         createdAt: serverTimestamp(),
         uid: auth.currentUser.uid,
         email: auth.currentUser.email,
-       bestGame,
+       bestGame: {...bestGame, displayName},
         sessions: [
           ...document.sessions,
           {
@@ -114,6 +119,7 @@ prev = bestGames.reduce((worldRecord, {bestGame}) =>{
           touchEnabled: touchEnabled,
           screenWidth,
           screenHeight,
+          displayName: auth.currentUser.displayName
         },
         sessions: [
           {
@@ -129,7 +135,7 @@ prev = bestGames.reduce((worldRecord, {bestGame}) =>{
       });
     }
   };
-console.log(worldRecord)
+
   return (
     <>
       <Header
